@@ -20,7 +20,7 @@ const MessageList = () => {
   const [same, setSame] = useState();
   const message = useSelector((state) => state.message.message);
   // eslint-disable-next-line
-  let match = message.find((item) => {
+  let match = message?.find((item) => {
     if (same === item._id) {
       return item;
     }
