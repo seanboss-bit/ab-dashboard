@@ -133,7 +133,7 @@ const MessageList = () => {
           <div className={show ? "user-data readMode" : "user-data"}>
             <DataGrid
               // eslint-disable-next-line
-              rows={message.filter((item) => {
+              rows={message?.filter((item) => {
                 if (filter === "") {
                   return item;
                 } else if (
