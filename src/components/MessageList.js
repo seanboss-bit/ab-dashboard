@@ -18,7 +18,7 @@ const MessageList = () => {
   const [filter, setFilter] = useState("");
   const [show, setShow] = useState(false);
   const [same, setSame] = useState();
-  const message = useSelector((state) => state.message.message);
+  const { message } = useSelector((state) => state.message);
   // eslint-disable-next-line
   let match = message?.find((item) => {
     if (same === item._id) {
