@@ -1,57 +1,72 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import MainLoader from "./components/MainLoader";
+import { ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
+import Sidebar from "./components/Sidebar";
+import Product from "./pages/Product";
+import Productinfo from "./pages/Productinfo";
+import AddNewProduct from "./pages/AddNewProduct";
+import Users from "./pages/Users";
+import UserSingle from "./pages/UserSingle";
+import Messages from "./pages/Messages";
+import Order from "./pages/Order";
 
 function App() {
+  const [open, setOpen] = useState(false);
+  const { currentUser } = useSelector((state) => state.user);
+
+  const admin = currentUser?.isAdmin;
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+    // eslint-disable-next-line
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <ToastContainer />
+      {loading ? (
+        <MainLoader />
+      ) : (
+        <Router>
+          <div className={admin ? "main-divide" : null}>
+            {admin ? (
+              <div className="side-bar">
+                <Sidebar open={open} setOpen={setOpen} />
+              </div>
+            ) : null}
+            <Routes>
+              <Route
+                path="/"
+                element={admin ? <Navigate to="/dashboard" /> : <Login />}
+              />
+              {admin && (
+                <>
+                  <Route path="/dashboard" element={<Dashboard open={open} setOpen={setOpen}/>} />
+                  <Route path="/users" element={<Users open={open} setOpen={setOpen}/>} />
+                  <Route path="/user/:id" element={<UserSingle open={open} setOpen={setOpen}/>} />
+                  <Route path="/order" element={<Order open={open} setOpen={setOpen}/>} />
+                  <Route path="/messages" element={<Messages open={open} setOpen={setOpen}/>} />
+                  <Route path="/addnew" element={<AddNewProduct open={open} setOpen={setOpen}/>} />
+                  <Route path="/product" element={<Product open={open} setOpen={setOpen}/>} />
+                  <Route path="/product/:id" element={<Productinfo open={open} setOpen={setOpen}/>} />
+                </>
+              )}
+            </Routes>
+          </div>
+        </Router>
+      )}
+    </>
   );
 }
 
