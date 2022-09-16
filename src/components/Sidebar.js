@@ -8,6 +8,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { Link, useLocation } from "react-router-dom";
 import { logout } from "../features/user/userRedux";
 import CloseIcon from "@mui/icons-material/Close";
+import { messageOut } from "../features/message/messageRedux";
 
 const Sidebar = ({ open, setOpen }) => {
   const location = useLocation();
@@ -27,7 +28,13 @@ const Sidebar = ({ open, setOpen }) => {
             <h2>AB Homes</h2>
           </div>
           <div className="side-links">
-            <Link to="/dashboard" className="rounded" onClick={() => {setOpen(false)}}>
+            <Link
+              to="/dashboard"
+              className="rounded"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
               <div
                 className={
                   location.pathname === "/dashboard"
@@ -39,7 +46,13 @@ const Sidebar = ({ open, setOpen }) => {
               </div>
               <p>dashboard</p>
             </Link>
-            <Link to="/product" className="rounded" onClick={() => {setOpen(false)}}>
+            <Link
+              to="/product"
+              className="rounded"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
               <div
                 className={
                   location.pathname === "/product"
@@ -51,7 +64,13 @@ const Sidebar = ({ open, setOpen }) => {
               </div>
               <p>properties</p>
             </Link>
-            <Link to="/order" className="rounded" onClick={() => {setOpen(false)}}>
+            <Link
+              to="/order"
+              className="rounded"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
               <div
                 className={
                   location.pathname === "/order"
@@ -63,7 +82,13 @@ const Sidebar = ({ open, setOpen }) => {
               </div>
               <p>orders</p>
             </Link>
-            <Link to="/messages" className="rounded" onClick={() => {setOpen(false)}}>
+            <Link
+              to="/messages"
+              className="rounded"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
               <div
                 className={
                   location.pathname === "/messages"
@@ -75,7 +100,13 @@ const Sidebar = ({ open, setOpen }) => {
               </div>
               <p>messages</p>
             </Link>
-            <Link to="/users" className="rounded" onClick={() => {setOpen(false)}}>
+            <Link
+              to="/users"
+              className="rounded"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
               <div
                 className={
                   location.pathname === "/users"
@@ -92,6 +123,7 @@ const Sidebar = ({ open, setOpen }) => {
               className="rounded"
               onClick={() => {
                 dispatch(logout());
+                dispatch(messageOut());
               }}
             >
               <div className="icon-space">

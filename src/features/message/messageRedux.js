@@ -39,6 +39,9 @@ const messageSlice = createSlice({
       state.isLoading = false;
       state.error = true;
     },
+    messageOut: (state) => {
+      state.message = [];
+    },
   },
 });
 
@@ -49,6 +52,7 @@ export const {
   DeleteStart,
   DeleteSuccess,
   DeleteFailure,
+  messageOut
 } = messageSlice.actions;
 
 export default messageSlice.reducer;
