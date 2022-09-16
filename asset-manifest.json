@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ab-homes/static/css/main.eacf968c.css",
+    "main.js": "/ab-homes/static/js/main.33545e02.js",
+    "index.html": "/ab-homes/index.html",
+    "main.eacf968c.css.map": "/ab-homes/static/css/main.eacf968c.css.map",
+    "main.33545e02.js.map": "/ab-homes/static/js/main.33545e02.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eacf968c.css",
+    "static/js/main.33545e02.js"
+  ]
+}
