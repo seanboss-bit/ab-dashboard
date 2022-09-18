@@ -23,6 +23,10 @@ const ProductList = () => {
     getProduct();
     // eslint-disable-next-line
   }, []);
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <div>
       <div className="container">
@@ -37,7 +41,7 @@ const ProductList = () => {
 
               <h4>{item.name}</h4>
               <p>{item.location}</p>
-              <span>{item.amount}</span>
+              <span>{ numberWithCommas( item.amount)}</span>
             </Link>
           ))}
         </div>

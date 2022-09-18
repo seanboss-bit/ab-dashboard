@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 const ProductInfoInner = () => {
   const { products } = useSelector((state) => state.product);
   const location = useLocation();
+
   const id = location.pathname.split("/")[2];
   const [sect, setSect] = useState();
   useEffect(() => {
@@ -18,7 +19,10 @@ const ProductInfoInner = () => {
       }
     });
     // eslint-disable-next-line
-  }, [id]);
+  }, [id, products]);
+  function numberWithCommas(x) {
+    return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   return (
     <div>
       <div className="showcase-area">
@@ -34,7 +38,7 @@ const ProductInfoInner = () => {
           <div className="product-info-inner">
             <div className="price-bath">
               <div className="price">
-                <p>NGN {sect?.amount}/yr</p>
+                <p>NGN {numberWithCommas(sect?.amount)}/yr</p>
               </div>
               <div className="bath">
                 <div className="bath-box">

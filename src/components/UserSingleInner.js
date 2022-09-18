@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import InventoryIcon from "@mui/icons-material/Inventory";
-import UpgradeIcon from '@mui/icons-material/Upgrade';
+import UpgradeIcon from "@mui/icons-material/Upgrade";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import Moment from "react-moment";
 
 const UserSingleInner = () => {
+  const users = useSelector((state) => state.userList.userList);
+  const location = useLocation();
+  const [user, setuser] = useState();
+  const id = location.pathname.split("/")[2];
+
+  useEffect(() => {
+    // eslint-disable-next-line
+    users?.find((item) => {
+      if (id === item._id) {
+        setuser(item);
+      }
+    });
+    // eslint-disable-next-line
+  }, [id]);
   return (
     <div>
       <div className="container">
@@ -13,13 +30,18 @@ const UserSingleInner = () => {
           <div className="user-inner-details">
             <div className="user-top">
               <img
-                src="https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock--480x320.jpg"
+                src={
+                  user?.img ||
+                  "https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Free-Image.png"
+                }
                 alt="#"
                 className="user-top-img"
               />
               <div className="user-top-writeups">
-                <span className="use-top-name">dwayne the rock johnson</span>
-                <span className="use-top-date">21-03-2022</span>
+                <span className="use-top-name">{user?.name}</span>
+                <span className="use-top-date">
+                  <Moment date={user?.createdAt} format="DD-MM-YYYY" />
+                </span>
               </div>
             </div>
             <div className="user-bottom">
@@ -28,19 +50,22 @@ const UserSingleInner = () => {
               </div>
               <div className="user-bottom-box">
                 <EmailIcon className="user-bottom-icon" />
-                <span>email@email.com</span>
+                <span>{user?.email}</span>
               </div>
               <div className="user-bottom-box">
                 <LocalPhoneIcon className="user-bottom-icon" />
-                <span>09057588210</span>
+                <span>{user?.phone}</span>
               </div>
               <div className="user-bottom-box">
                 <SupervisedUserCircleIcon className="user-bottom-icon" />
-                <span>admin: false</span>
+                <span>admin: {user?.isAdmin ? "Yes" : "No"}</span>
               </div>
               <div className="user-bottom-box">
                 <InventoryIcon className="user-bottom-icon" />
-                <span>30</span>
+                <span>
+                  {user?.product[0].bought.length +
+                    user?.product[0].rent.length}
+                </span>
               </div>
             </div>
           </div>
@@ -63,8 +88,8 @@ const UserSingleInner = () => {
                 <div className="userUpdateBox">
                   <label>isAdmin</label>
                   <select>
-                    <option value="yes">yes</option>
                     <option value="no">no</option>
+                    <option value="yes">yes</option>
                   </select>
                 </div>
               </div>
@@ -72,10 +97,13 @@ const UserSingleInner = () => {
                 <div className="user-pic-update">
                   <img
                     src="https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock--480x320.jpg"
-                    alt="#" className="user-pic-img-update"
+                    alt="#"
+                    className="user-pic-img-update"
                   />
-                  <label htmlFor="file"><UpgradeIcon className="updateIconPic"/></label>
-                  <input type="file" id="file"/>
+                  <label htmlFor="file">
+                    <UpgradeIcon className="updateIconPic" />
+                  </label>
+                  <input type="file" id="file" />
                 </div>
                 <button className="userUpadtebtn">update</button>
               </div>

@@ -9,6 +9,7 @@ import { Link, useLocation } from "react-router-dom";
 import { logout } from "../features/user/userRedux";
 import CloseIcon from "@mui/icons-material/Close";
 import { messageOut } from "../features/message/messageRedux";
+import { outer } from "../features/List/listRedux";
 
 const Sidebar = ({ open, setOpen }) => {
   const location = useLocation();
@@ -124,6 +125,7 @@ const Sidebar = ({ open, setOpen }) => {
               onClick={() => {
                 dispatch(logout());
                 dispatch(messageOut());
+                dispatch(outer());
               }}
             >
               <div className="icon-space">

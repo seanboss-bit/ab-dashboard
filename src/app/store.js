@@ -2,6 +2,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userRedux from "../features/user/userRedux";
 import productRedux from "../features/product/productRedux";
 import messageRedux from "../features/message/messageRedux";
+import listRedux from "../features/List/listRedux";
 import {
   persistStore,
   persistReducer,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   user: userRedux,
   product: productRedux,
   message: messageRedux,
+  userList: listRedux
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({

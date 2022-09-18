@@ -12,6 +12,7 @@ import {
   MessageSuccess,
 } from "../features/message/messageRedux";
 import { userRequest } from "../requestMethods";
+import { toast } from "react-toastify";
 
 const MessageList = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const MessageList = () => {
     try {
       const res = await userRequest.delete(`/messages/${id}`);
       dispatch(DeleteSuccess(res.data));
+      toast.success(res.data.message)
     } catch (error) {
       console.log(error);
       dispatch(DeleteFailure());

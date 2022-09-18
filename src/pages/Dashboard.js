@@ -47,11 +47,17 @@ const Dashboard = ({ open, setOpen }) => {
   return (
     <div>
       <Navbar name="dashboard" open={open} setOpen={setOpen} />
-      <DashboardInner />
-      <Chart title="sales" data={incomeStats} dataKey="Total Sales" grid />
-      <div className="for">
-        <RecentUser />
-        <RecentOrders />
+      <div className="container">
+        <DashboardInner />
+      </div>
+      <div className="container">
+        <Chart title="sales" data={incomeStats} dataKey="Total Sales" grid />
+      </div>
+      <div className="container">
+        <div className="for">
+          <RecentUser />
+          <RecentOrders />
+        </div>
       </div>
     </div>
   );

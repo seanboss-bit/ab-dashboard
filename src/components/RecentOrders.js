@@ -17,6 +17,10 @@ const RecentOrders = () => {
     };
     getNewOrders();
   }, []);
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   return (
     <div className="recent-orders">
       <div className="container">
@@ -41,7 +45,7 @@ const RecentOrders = () => {
                   <p>date paid</p>
                 </div>
                 <div className="recent-order-text">
-                  <h6>NGN {order.amountPaid}</h6>
+                  <h6>NGN {numberWithCommas(order.amountPaid)}</h6>
                   <p>amount paid</p>
                 </div>
               </div>
