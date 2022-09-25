@@ -9,6 +9,7 @@ import {
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Login = () => {
     } else {
       dispatch(loginStart());
       try {
-        const res = await publicRequest.post("/users/login", {
+        const res = await publicRequest.post("/users/login/admin", {
           email,
           password,
         });
@@ -40,7 +41,12 @@ const Login = () => {
   return (
     <div>
       <div className="container">
-        <div className="login-inner">
+        <motion.div
+          className="login-inner"
+          initial={{ opacity: 0, scale: 0 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.6 }}
+        >
           <div className="form-box">
             <div className="logo">
               <h2>AB Homes</h2>
@@ -72,7 +78,7 @@ const Login = () => {
               </form>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -346,6 +346,7 @@ PRODUCT PAGE STYLES
   border-radius: 20px !important;
   overflow: hidden;
   z-index: 10;
+  cursor: pointer;
 }
 .product-list-box *{
   position: absolute;
@@ -864,7 +865,45 @@ ORDER PAGE STYLING
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
+/*========================================
+MAIN LOADING SCREEN  
+==========================================*/
+.main-loader{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.main-loader img{
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  position: absolute;
+}
 
+.img-one{
+  top: 5%;
+  left: 2%;
+  width: 200px !important;
+}
+.img-two{
+  bottom: 0%;
+  right: 0%;
+  width: 200px !important;
+}
+.img-three{
+  right: 8%;
+  top: 2%;
+}
+.img-four{
+  bottom: 10%;
+  left: 19%;
+}
+.img-five{
+  bottom: 30%;
+  left: 44%;
+}
 /*=============================================
 MEDIA QURIES ALL  
 ===============================================*/

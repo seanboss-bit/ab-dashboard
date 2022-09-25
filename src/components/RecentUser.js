@@ -23,7 +23,7 @@ const RecentUser = () => {
         <div className="recent-user-inner">
           {users?.map((user) => (
             <Link
-              to={`user/${user._id}`}
+              to={`/user/${user._id}`}
               className="user-recent"
               key={user._id}
             >

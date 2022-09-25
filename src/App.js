@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -19,24 +19,20 @@ import Users from "./pages/Users";
 import UserSingle from "./pages/UserSingle";
 import Messages from "./pages/Messages";
 import Order from "./pages/Order";
+import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
   const [open, setOpen] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
-
   const admin = currentUser?.isAdmin;
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 4000);
-    // eslint-disable-next-line
-  }, []);
+  const [loading, setLoading] = useState(currentUser === null ? true : false);
   return (
-    <>
+    <AnimatePresence>
       <ToastContainer />
       {loading ? (
-        <MainLoader />
+        <motion.div key="loading">
+          <MainLoader setLoading={setLoading} />
+        </motion.div>
       ) : (
         <Router>
           <div className={admin ? "main-divide" : null}>
@@ -52,21 +48,45 @@ function App() {
               />
               {admin && (
                 <>
-                  <Route path="/dashboard" element={<Dashboard open={open} setOpen={setOpen}/>} />
-                  <Route path="/users" element={<Users open={open} setOpen={setOpen}/>} />
-                  <Route path="/user/:id" element={<UserSingle open={open} setOpen={setOpen}/>} />
-                  <Route path="/order" element={<Order open={open} setOpen={setOpen}/>} />
-                  <Route path="/messages" element={<Messages open={open} setOpen={setOpen}/>} />
-                  <Route path="/addnew" element={<AddNewProduct open={open} setOpen={setOpen}/>} />
-                  <Route path="/product" element={<Product open={open} setOpen={setOpen}/>} />
-                  <Route path="/product/:id" element={<Productinfo open={open} setOpen={setOpen}/>} />
+                  <Route
+                    path="/dashboard"
+                    element={<Dashboard open={open} setOpen={setOpen} />}
+                  />
+                  <Route
+                    path="/users"
+                    element={<Users open={open} setOpen={setOpen} />}
+                  />
+                  <Route
+                    path="/user/:id"
+                    element={<UserSingle open={open} setOpen={setOpen} />}
+                  />
+                  <Route
+                    path="/order"
+                    element={<Order open={open} setOpen={setOpen} />}
+                  />
+                  <Route
+                    path="/messages"
+                    element={<Messages open={open} setOpen={setOpen} />}
+                  />
+                  <Route
+                    path="/addnew"
+                    element={<AddNewProduct open={open} setOpen={setOpen} />}
+                  />
+                  <Route
+                    path="/product"
+                    element={<Product open={open} setOpen={setOpen} />}
+                  />
+                  <Route
+                    path="/product/:id"
+                    element={<Productinfo open={open} setOpen={setOpen} />}
+                  />
                 </>
               )}
             </Routes>
           </div>
         </Router>
       )}
-    </>
+    </AnimatePresence>
   );
 }
 

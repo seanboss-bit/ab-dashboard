@@ -10,6 +10,7 @@ import { logout } from "../features/user/userRedux";
 import CloseIcon from "@mui/icons-material/Close";
 import { messageOut } from "../features/message/messageRedux";
 import { outer } from "../features/List/listRedux";
+import { motion } from "framer-motion";
 
 const Sidebar = ({ open, setOpen }) => {
   const location = useLocation();
@@ -28,7 +29,7 @@ const Sidebar = ({ open, setOpen }) => {
           <div className="logo">
             <h2>AB Homes</h2>
           </div>
-          <div className="side-links">
+          <motion.div className="side-links">
             <Link
               to="/dashboard"
               className="rounded"
@@ -133,7 +134,7 @@ const Sidebar = ({ open, setOpen }) => {
               </div>
               <p>logout</p>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
