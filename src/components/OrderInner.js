@@ -46,8 +46,7 @@ const OrderInner = () => {
             />
           </div>
           {/* eslint-disable-next-line */}
-          {orders
-            .filter((item) => {
+          {orders.filter((item) => {
               if (search === "") {
                 return item;
               } else if (
