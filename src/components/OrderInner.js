@@ -11,7 +11,7 @@ const OrderInner = () => {
     try {
       // eslint-disable-next-line
       const res = await userRequest.delete("/order/" + id);
-      toast.success(res.data.message)
+      toast.success(res.data.message);
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +46,8 @@ const OrderInner = () => {
             />
           </div>
           {/* eslint-disable-next-line */}
-          {orders.filter((item) => {
+          {orders
+            .filter((item) => {
               if (search === "") {
                 return item;
               } else if (
@@ -71,7 +72,9 @@ const OrderInner = () => {
                     </p>
                     <p>
                       <span>amount paid:</span>{" "}
-                      {numberWithCommas(order.amountPaid)}
+                      {order.amountPaid > order.amount
+                        ? numberWithCommas(order.amountPaid * 4)
+                        : numberWithCommas(order.amountPaid)}
                     </p>
                     <p>
                       <span>service:</span> {order.bought ? "bought" : "rent"}
