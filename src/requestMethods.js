@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://ab-back.herokuapp.com/";
+const BASE_URL = "https://real-estate-web.onrender.com";
 // const BASE_URL = "http://localhost:5000/";
 const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
   ?.currentUser?.accessToken;
